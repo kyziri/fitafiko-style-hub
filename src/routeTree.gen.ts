@@ -9,16 +9,63 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ProcessusRouteImport } from './routes/processus'
+import { Route as PersonnalisationRouteImport } from './routes/personnalisation'
+import { Route as PanierRouteImport } from './routes/panier'
+import { Route as MesuresRouteImport } from './routes/mesures'
+import { Route as GalerieRouteImport } from './routes/galerie'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CompteRouteImport } from './routes/compte'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AtelierRouteImport } from './routes/atelier'
+import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CollectionIndexRouteImport } from './routes/collection/index'
+import { Route as CommandeSuiviRouteImport } from './routes/commande/suivi'
 import { Route as CollectionIdRouteImport } from './routes/collection/$id'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
+const TarifsRoute = TarifsRouteImport.update({
+  id: '/tarifs',
+  path: '/tarifs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProcessusRoute = ProcessusRouteImport.update({
+  id: '/processus',
+  path: '/processus',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PersonnalisationRoute = PersonnalisationRouteImport.update({
+  id: '/personnalisation',
+  path: '/personnalisation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PanierRoute = PanierRouteImport.update({
+  id: '/panier',
+  path: '/panier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MesuresRoute = MesuresRouteImport.update({
+  id: '/mesures',
+  path: '/mesures',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalerieRoute = GalerieRouteImport.update({
+  id: '/galerie',
+  path: '/galerie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -26,9 +73,24 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompteRoute = CompteRouteImport.update({
+  id: '/compte',
+  path: '/compte',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtelierRoute = AtelierRouteImport.update({
   id: '/atelier',
   path: '/atelier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AProposRoute = AProposRouteImport.update({
+  id: '/a-propos',
+  path: '/a-propos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -41,80 +103,222 @@ const CollectionIndexRoute = CollectionIndexRouteImport.update({
   path: '/collection/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommandeSuiviRoute = CommandeSuiviRouteImport.update({
+  id: '/commande/suivi',
+  path: '/commande/suivi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CollectionIdRoute = CollectionIdRouteImport.update({
   id: '/collection/$id',
   path: '/collection/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
   '/atelier': typeof AtelierRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/compte': typeof CompteRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/galerie': typeof GalerieRoute
+  '/mesures': typeof MesuresRoute
+  '/panier': typeof PanierRoute
+  '/personnalisation': typeof PersonnalisationRoute
+  '/processus': typeof ProcessusRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tarifs': typeof TarifsRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/collection/$id': typeof CollectionIdRoute
+  '/commande/suivi': typeof CommandeSuiviRoute
   '/collection/': typeof CollectionIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
   '/atelier': typeof AtelierRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/compte': typeof CompteRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/galerie': typeof GalerieRoute
+  '/mesures': typeof MesuresRoute
+  '/panier': typeof PanierRoute
+  '/personnalisation': typeof PersonnalisationRoute
+  '/processus': typeof ProcessusRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tarifs': typeof TarifsRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/collection/$id': typeof CollectionIdRoute
+  '/commande/suivi': typeof CommandeSuiviRoute
   '/collection': typeof CollectionIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
   '/atelier': typeof AtelierRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/compte': typeof CompteRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/galerie': typeof GalerieRoute
+  '/mesures': typeof MesuresRoute
+  '/panier': typeof PanierRoute
+  '/personnalisation': typeof PersonnalisationRoute
+  '/processus': typeof ProcessusRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tarifs': typeof TarifsRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/collection/$id': typeof CollectionIdRoute
+  '/commande/suivi': typeof CommandeSuiviRoute
   '/collection/': typeof CollectionIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/a-propos'
     | '/atelier'
+    | '/blog'
+    | '/compte'
     | '/contact'
+    | '/faq'
+    | '/galerie'
+    | '/mesures'
+    | '/panier'
+    | '/personnalisation'
+    | '/processus'
     | '/sitemap.xml'
+    | '/tarifs'
+    | '/blog/$slug'
     | '/collection/$id'
+    | '/commande/suivi'
     | '/collection/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/a-propos'
     | '/atelier'
+    | '/blog'
+    | '/compte'
     | '/contact'
+    | '/faq'
+    | '/galerie'
+    | '/mesures'
+    | '/panier'
+    | '/personnalisation'
+    | '/processus'
     | '/sitemap.xml'
+    | '/tarifs'
+    | '/blog/$slug'
     | '/collection/$id'
+    | '/commande/suivi'
     | '/collection'
   id:
     | '__root__'
     | '/'
+    | '/a-propos'
     | '/atelier'
+    | '/blog'
+    | '/compte'
     | '/contact'
+    | '/faq'
+    | '/galerie'
+    | '/mesures'
+    | '/panier'
+    | '/personnalisation'
+    | '/processus'
     | '/sitemap.xml'
+    | '/tarifs'
+    | '/blog/$slug'
     | '/collection/$id'
+    | '/commande/suivi'
     | '/collection/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AProposRoute: typeof AProposRoute
   AtelierRoute: typeof AtelierRoute
+  BlogRoute: typeof BlogRouteWithChildren
+  CompteRoute: typeof CompteRoute
   ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
+  GalerieRoute: typeof GalerieRoute
+  MesuresRoute: typeof MesuresRoute
+  PanierRoute: typeof PanierRoute
+  PersonnalisationRoute: typeof PersonnalisationRoute
+  ProcessusRoute: typeof ProcessusRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TarifsRoute: typeof TarifsRoute
   CollectionIdRoute: typeof CollectionIdRoute
+  CommandeSuiviRoute: typeof CommandeSuiviRoute
   CollectionIndexRoute: typeof CollectionIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tarifs': {
+      id: '/tarifs'
+      path: '/tarifs'
+      fullPath: '/tarifs'
+      preLoaderRoute: typeof TarifsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/processus': {
+      id: '/processus'
+      path: '/processus'
+      fullPath: '/processus'
+      preLoaderRoute: typeof ProcessusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/personnalisation': {
+      id: '/personnalisation'
+      path: '/personnalisation'
+      fullPath: '/personnalisation'
+      preLoaderRoute: typeof PersonnalisationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panier': {
+      id: '/panier'
+      path: '/panier'
+      fullPath: '/panier'
+      preLoaderRoute: typeof PanierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mesures': {
+      id: '/mesures'
+      path: '/mesures'
+      fullPath: '/mesures'
+      preLoaderRoute: typeof MesuresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galerie': {
+      id: '/galerie'
+      path: '/galerie'
+      fullPath: '/galerie'
+      preLoaderRoute: typeof GalerieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -124,11 +328,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compte': {
+      id: '/compte'
+      path: '/compte'
+      fullPath: '/compte'
+      preLoaderRoute: typeof CompteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atelier': {
       id: '/atelier'
       path: '/atelier'
       fullPath: '/atelier'
       preLoaderRoute: typeof AtelierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/a-propos': {
+      id: '/a-propos'
+      path: '/a-propos'
+      fullPath: '/a-propos'
+      preLoaderRoute: typeof AProposRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -145,6 +370,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/commande/suivi': {
+      id: '/commande/suivi'
+      path: '/commande/suivi'
+      fullPath: '/commande/suivi'
+      preLoaderRoute: typeof CommandeSuiviRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/collection/$id': {
       id: '/collection/$id'
       path: '/collection/$id'
@@ -152,15 +384,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
 
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AProposRoute: AProposRoute,
   AtelierRoute: AtelierRoute,
+  BlogRoute: BlogRouteWithChildren,
+  CompteRoute: CompteRoute,
   ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
+  GalerieRoute: GalerieRoute,
+  MesuresRoute: MesuresRoute,
+  PanierRoute: PanierRoute,
+  PersonnalisationRoute: PersonnalisationRoute,
+  ProcessusRoute: ProcessusRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TarifsRoute: TarifsRoute,
   CollectionIdRoute: CollectionIdRoute,
+  CommandeSuiviRoute: CommandeSuiviRoute,
   CollectionIndexRoute: CollectionIndexRoute,
 }
 export const routeTree = rootRouteImport
