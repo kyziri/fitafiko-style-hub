@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Scissors, Sparkles, HandHeart } from "lucide-react";
+import { ArrowRight, Scissors, Sparkles, HandHeart, Star, Phone, Mail, MapPin } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import atelier from "@/assets/atelier.jpg";
 import { products } from "@/lib/products";
@@ -16,8 +16,15 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const testimonials = [
+  { name: "Hanitra R.", text: "Une robe de cérémonie parfaite, ajustée au millimètre. Service impeccable.", rating: 5 },
+  { name: "Jean-Luc M.", text: "Mon costume sur-mesure est tout simplement exceptionnel. Je recommande vivement.", rating: 5 },
+  { name: "Sarah A.", text: "L'équipe est à l'écoute, les finitions sont magnifiques. Une vraie maison de couture.", rating: 5 },
+];
+
 function Home() {
   const featured = products.slice(0, 3);
+  const latest = products.slice(3, 7);
   return (
     <>
       {/* Hero */}
@@ -38,14 +45,14 @@ function Home() {
                 to="/collection"
                 className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
               >
-                Découvrir la collection
+                Commander maintenant
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                to="/atelier"
+                to="/personnalisation"
                 className="inline-flex items-center gap-2 rounded-full border border-primary/40 px-7 py-3 text-sm font-medium text-primary transition hover:bg-primary/5"
               >
-                Notre atelier
+                Personnaliser
               </Link>
             </div>
           </div>
@@ -64,20 +71,26 @@ function Home() {
         </div>
       </section>
 
-      {/* Values */}
+      {/* Why us */}
       <section className="border-y border-border/60 bg-secondary/40">
-        <div className="container-x grid gap-10 py-16 md:grid-cols-3">
-          {[
-            { icon: Scissors, title: "Sur-mesure", text: "Chaque vêtement est coupé et cousu selon vos mensurations exactes." },
-            { icon: HandHeart, title: "Fait main", text: "Confection artisanale dans notre atelier, avec une attention au moindre détail." },
-            { icon: Sparkles, title: "Tissus nobles", text: "Soie, laine, lin et wax sélectionnés avec soin chez les meilleurs fournisseurs." },
-          ].map(({ icon: Icon, title, text }) => (
-            <div key={title} className="flex flex-col items-start">
-              <Icon className="h-7 w-7 text-primary" />
-              <h3 className="mt-4 text-2xl">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{text}</p>
-            </div>
-          ))}
+        <div className="container-x py-16">
+          <div className="text-center">
+            <p className="eyebrow">Pourquoi Fitafiko</p>
+            <h2 className="mt-3 text-4xl md:text-5xl">Pourquoi choisir notre atelier ?</h2>
+          </div>
+          <div className="mt-12 grid gap-10 md:grid-cols-3">
+            {[
+              { icon: Scissors, title: "Sur-mesure", text: "Chaque vêtement est coupé et cousu selon vos mensurations exactes." },
+              { icon: HandHeart, title: "Fait main", text: "Confection artisanale dans notre atelier, avec une attention au moindre détail." },
+              { icon: Sparkles, title: "Tissus nobles", text: "Soie, laine, lin et wax sélectionnés avec soin chez les meilleurs fournisseurs." },
+            ].map(({ icon: Icon, title, text }) => (
+              <div key={title} className="flex flex-col items-start">
+                <Icon className="h-7 w-7 text-primary" />
+                <h3 className="mt-4 text-2xl">{title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -86,7 +99,7 @@ function Home() {
         <div className="flex items-end justify-between">
           <div>
             <p className="eyebrow">Sélection</p>
-            <h2 className="mt-3 text-4xl md:text-5xl">Pièces signature</h2>
+            <h2 className="mt-3 text-4xl md:text-5xl">Produits vedettes</h2>
           </div>
           <Link to="/collection" className="hidden text-sm text-primary hover:underline md:inline">
             Voir tout →
@@ -94,21 +107,10 @@ function Home() {
         </div>
         <div className="mt-10 grid gap-8 md:grid-cols-3">
           {featured.map((p) => (
-            <Link
-              key={p.id}
-              to="/collection/$id"
-              params={{ id: p.id }}
-              className="group block"
-            >
+            <Link key={p.id} to="/collection/$id" params={{ id: p.id }} className="group block">
               <div className="overflow-hidden rounded-md bg-muted">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  width={900}
-                  height={1100}
-                  className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+                <img src={p.image} alt={p.name} loading="lazy" width={900} height={1100}
+                  className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <div className="mt-4 flex items-baseline justify-between">
                 <div>
@@ -124,14 +126,8 @@ function Home() {
 
       {/* Atelier teaser */}
       <section className="container-x grid items-center gap-12 py-20 md:grid-cols-2">
-        <img
-          src={atelier}
-          alt="L'atelier Fitafiko"
-          loading="lazy"
-          width={1400}
-          height={1000}
-          className="aspect-[4/3] w-full rounded-md object-cover"
-        />
+        <img src={atelier} alt="L'atelier Fitafiko" loading="lazy" width={1400} height={1000}
+          className="aspect-[4/3] w-full rounded-md object-cover" />
         <div>
           <p className="eyebrow">L'Atelier</p>
           <h2 className="mt-3 text-4xl md:text-5xl">Là où naissent vos pièces.</h2>
@@ -140,12 +136,80 @@ function Home() {
             Chaque création passe entre les mains de couturières expérimentées qui
             transforment vos idées en pièces inoubliables.
           </p>
-          <Link
-            to="/atelier"
-            className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-          >
+          <Link to="/atelier" className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
             En savoir plus <ArrowRight className="h-4 w-4" />
           </Link>
+        </div>
+      </section>
+
+      {/* Latest creations */}
+      <section className="border-y border-border/60 bg-secondary/30">
+        <div className="container-x py-20">
+          <div className="flex items-end justify-between">
+            <div>
+              <p className="eyebrow">Nouveautés</p>
+              <h2 className="mt-3 text-4xl md:text-5xl">Dernières créations</h2>
+            </div>
+            <Link to="/galerie" className="hidden text-sm text-primary hover:underline md:inline">
+              Galerie complète →
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {latest.map((p) => (
+              <Link key={p.id} to="/collection/$id" params={{ id: p.id }} className="group block">
+                <div className="overflow-hidden rounded-md bg-muted">
+                  <img src={p.image} alt={p.name} loading="lazy"
+                    className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <h3 className="mt-3 text-base">{p.name}</h3>
+                <p className="text-xs text-muted-foreground">{p.category}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="container-x py-20">
+        <div className="text-center">
+          <p className="eyebrow">Témoignages</p>
+          <h2 className="mt-3 text-4xl md:text-5xl">Ils nous font confiance</h2>
+        </div>
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
+          {testimonials.map((t) => (
+            <div key={t.name} className="rounded-md border border-border/60 bg-card p-8">
+              <div className="flex gap-1 text-primary">
+                {Array.from({ length: t.rating }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-current" />
+                ))}
+              </div>
+              <p className="mt-4 font-display text-lg italic leading-relaxed">"{t.text}"</p>
+              <p className="mt-6 text-sm font-medium">— {t.name}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Quick contact */}
+      <section className="border-t border-border/60 bg-primary text-primary-foreground">
+        <div className="container-x grid gap-10 py-16 md:grid-cols-4">
+          <div className="md:col-span-2">
+            <h2 className="font-display text-4xl">Une question ? Un projet ?</h2>
+            <p className="mt-3 text-sm opacity-90">Notre équipe est disponible du lundi au samedi pour vous accompagner.</p>
+            <Link to="/contact" className="mt-6 inline-flex items-center gap-2 rounded-full bg-background px-6 py-3 text-sm font-medium text-foreground hover:opacity-90">
+              Nous contacter <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="space-y-3 text-sm">
+            <p className="flex items-center gap-2"><Phone className="h-4 w-4" /> +261 34 00 000 00</p>
+            <p className="flex items-center gap-2"><Mail className="h-4 w-4" /> contact@fitafiko.com</p>
+            <p className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Antananarivo</p>
+          </div>
+          <div className="text-sm">
+            <p className="opacity-80">Horaires</p>
+            <p className="mt-2">Lun – Ven : 9h – 18h</p>
+            <p>Samedi : 9h – 13h</p>
+          </div>
         </div>
       </section>
     </>
